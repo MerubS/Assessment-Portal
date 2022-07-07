@@ -1,0 +1,27 @@
+.sidebar{
+    background: #803be5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 100%;
+    padding: 20px 0;
+    padding: 15px;
+    color: white;
+}
+
+.sidebar ul li{
+    display: block;
+    text-decoration: none;
+    padding-bottom: 5px;
+    color: white;
+    position: relative;
+    font-weight:lighter;
+
+}
+
+/* .wrapper .sidebar ul li a .icon{
+    color: #dee4ec;
+    width: 30px;
+    display: inline-block;
+} */
