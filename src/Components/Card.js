@@ -4,29 +4,29 @@ function QuestionCard(props) {
 return(
     <Card style={{ width: '80vw' , marginBottom:'1%'}}>
   <Card.Body>
-    <Card.Title> Question no: {props.data[0]} </Card.Title>
-    <Card.Subtitle className="mb-2 text-muted"> {props.data[1]} </Card.Subtitle>
+    <Card.Title> Question no: </Card.Title>
+    <Card.Subtitle className="mb-2 text-muted"> {console.log("In card",props.q)} </Card.Subtitle>
     <Card.Text>
     <Form style={{paddingLeft:40}}>
     <Form.Check 
         type= 'radio'
         id= 'one'
-        label= {props.data[2]}
+        label= {props.op1}
       />
         <Form.Check 
         type= 'radio'
         id= 'two'
-        label= {props.data[3]}
+        label= {props.op2}
       />
         <Form.Check 
         type= 'radio'
         id= 'three'
-        label= {props.data[4]}
+        label= {props.op3}
       />
         <Form.Check 
         type= 'radio'
         id= 'four'
-        label= {props.data[5]}
+        label= {props.op4}
       />
     </Form>
     </Card.Text>
