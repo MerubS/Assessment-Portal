@@ -2,8 +2,8 @@ import Login from './Pages/Login';
 import React , {useState , useEffect} from 'react';
 import axios from "axios"
 import MainRoute from './Routes/MainRoute';
+import Question from './Pages/Question';
 const App = () => {
-  const [Authenticated , setAuthenticated] = useState(false);
 
   const message = "Connection Established With Backend"
 
@@ -12,7 +12,7 @@ const App = () => {
 
     const conn = async() => {
     try {
-			  await axios.post("/start", {
+			  await axios.post("http://localhost:8080/start", {
 				message
 			})
       .then((responce) => console.log(responce.data))
@@ -22,17 +22,11 @@ const App = () => {
     conn()
   },[]);
 
-
-   const setauthtrue = () => {
-    setAuthenticated(true);
-   }
-   const setauthfalse = () => {
-    setAuthenticated(false);
-   }
  return (
-  <div>
-       {Authenticated ? <MainRoute/> : <Login auth={setauthtrue}/>}
-  </div>
+  //  <div>
+  //    {Authenticated ? <MainRoute logauth={setauthtrue} nlogauth={setauthfalse}/> : <Login auth={setauthtrue}/>} 
+  //  </div>
+  <MainRoute/>
    );
  }
  

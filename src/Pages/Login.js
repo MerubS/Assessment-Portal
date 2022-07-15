@@ -1,38 +1,31 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Row , Form , Button, Container } from 'react-bootstrap';
 import './Login.css'
 import axios from "axios"
-import MainRoute from '../Routes/MainRoute';
+import {useAuth} from '../Routes/UseAuth';
+import { useNavigate } from 'react-router-dom';
 
-function Login(props) {
+function Login() {
   const [logincred,setlogincred] = useState({email : '' , pass : '' });
   var login_status = '';
-  const authHandler = () => {
-    console.log(logincred['email'] , logincred['pass']);
-    props.auth();
-  }
-
+  const navigate = useNavigate();  
+  const login = useContext(useAuth)
   const submitHandler = async e => {
     e.preventDefault()
-    await checking()
-
-
-      if (login_status === "Success"){
-        console.log('User Found')
-        props.auth();
-
-      }
-      else{
-        console.log('User not Found')
-        /// Login failed
-      }
-     
+    await checking();
+    if (login_status === "Success"){              
+      login();
     }
+    else{
+      console.log('User not Found')
+      /// Login failed
+    }
+  }
 
   const checking = async () => {
     
   try {
-              await axios.post("/sendData", 
+              await axios.post("http://localhost:8080/sendData", 
               {logincred}).then((responce) => {
                 login_status = responce.data
                console.log(login_status)

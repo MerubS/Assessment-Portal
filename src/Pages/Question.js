@@ -1,9 +1,9 @@
 import './Question.css'
-import Card from '../Components/Card.js'
-import {Container , Button , Row , Col} from 'react-bootstrap'
+import Qdisplay from '../Components/Qdisplay'
+import {Container , Button , Row , Col, Card , Form} from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-function Question() {
+const Question = () => {
 
   const [loading,setloading] = useState(false);
   const [qdata , setqdata] = useState({});
@@ -12,7 +12,7 @@ function Question() {
 
     const conn = async() => {
     try {
-			  await axios.get("/getQuestions")
+			  await axios.get("http://localhost:8080/getQuestions")
       .then((responce) => {
 
         if (responce.data.length > 0) {
@@ -28,23 +28,17 @@ function Question() {
 		} catch (error) {
 			console.error(error)
 		}}
-    conn()
+    conn() 
   },[]);
 
  return(
-  // <div>
-  //   {loading && console.log("The data is",qdata)}
-  //   {
-  //     loading && qdata.map((d) => {console.log("In div", d)})
-  // }
-  // </div>
-  <Container style={{marginLeft:'15%',backgroundcolor:'green', paddingTop:'5%'}}> 
-  {loading && qdata.map((d) =>{
-    <Card q= {d.Question} op1 = {d.Option1} op2 ={d.Option2} op3 ={d.Option3} op4 ={d.Option4}/>
-  })}
+  <Container style={{marginLeft:'15%',backgroundcolor:'green',paddingTop:'3%'}}> 
+ {loading && qdata.map((d,index) => ( 
+ <Row> <Qdisplay data={d} index={index}/> </Row>
+ )) }
      <Row style={{paddingTop: 25, justifyContent:'end'}} > 
       <Col sm={3}> 
-    <Button variant='outline-info' className='float-right'> Next </Button>
+    <Button variant='outline-info' className='float-right'> Submit </Button>
      </Col>
     </Row>
   </Container>

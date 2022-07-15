@@ -33,7 +33,7 @@ app.post("/start", async (req, res) => {
 
 app.post("/sendData", async (req, res) => {
 	let {logincred} = req.body
-    // console.log(logincred['email'],logincred['pass'])
+    console.log(logincred['email'],logincred['pass'])
     // res.send('Success')
     try{
     usr = await client.db("Assessment_Portal").collection("Users").findOne({ $and: [ {Email : logincred['email']}, {Password : logincred['pass']} ]})
