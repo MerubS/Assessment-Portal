@@ -1,8 +1,10 @@
 import Login from './Pages/Login';
-import React , {useState , useEffect} from 'react';
+import React , {useState , useEffect , useContext} from 'react';
 import axios from "axios"
 import MainRoute from './Routes/MainRoute';
-import Question from './Pages/Question';
+import { ContextProvider } from './Routes/UseAuth';
+
+
 const App = () => {
 
   const message = "Connection Established With Backend"
@@ -26,8 +28,11 @@ const App = () => {
   //  <div>
   //    {Authenticated ? <MainRoute logauth={setauthtrue} nlogauth={setauthfalse}/> : <Login auth={setauthtrue}/>} 
   //  </div>
+  // <Login/>
+ <ContextProvider>
   <MainRoute/>
-   );
+ </ContextProvider>
+  );
  }
  
  export default App;

@@ -2,19 +2,24 @@ import { useState, useContext } from 'react';
 import { Row , Form , Button, Container } from 'react-bootstrap';
 import './Login.css'
 import axios from "axios"
-import {useAuth} from '../Routes/UseAuth';
+import Useauth from '../Routes/UseAuth';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+
+const Login = () => {
   const [logincred,setlogincred] = useState({email : '' , pass : '' });
   var login_status = '';
-  const navigate = useNavigate();  
-  const login = useContext(useAuth)
+  const d= Useauth();
+  const navigate = useNavigate();
   const submitHandler = async e => {
     e.preventDefault()
     await checking();
     if (login_status === "Success"){              
-      login();
+      console.log('User found');
+      // console.log("The value of d is", d);
+      d.setauth(true);
+      navigate('/Questions');
+    
     }
     else{
       console.log('User not Found')
